@@ -11,8 +11,8 @@
 ## Getting started
 
 - Navigate to the root directory
-- Run npm `run install-all`
-- To start your react app run npm `run start:react`
+- Run `npm run install-all`
+- To start your react app run `npm run start:react`
 - Before starting your server make sure to change your database configuration inside of queries.s
 - To seed your database run `npm run seed`
 - To start your server run `npm run start:server`
