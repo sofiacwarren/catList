@@ -1,10 +1,11 @@
 # Full Stack Drills
 
-**GOAL**
+**GOALS**
 
-- Your goal is to eventually comfortable building ANY ExpressJS fullstack application.
-- Get practice with seeing it can all come together
-- The steps below are guidelines, do what makes sense for you, what you need to focus on
+- Be comfortable building ANY ExpressJS fullstack application.
+- Quickly work through all major areas of the full stack so you can see it all come together: 
+Frontend (React), Server (Express, and Database (MySQL).
+- The steps below are guidelines
 - After doing this a few times, challenge yourself to create your own application without any directions.
 - If you feel comfortable with everything, think about adding additional features / CSS
 
