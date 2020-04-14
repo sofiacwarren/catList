@@ -6,9 +6,6 @@ Quickly work through all major areas of the full stack so you can see it all com
  - Client-side a.k.a. Frontend (React)
  - Server-side a.k.a Backend (Express, and Database (MySQL).
 
-The steps below are guidelines. After doing this a few times, challenge yourself to create your own application without any directions. If you feel fluent enough, think about adding additional features / CSS
-
-
 ## Goal
 
 After completing these practice drills, you should be able to quickly build and work in any ExpressJS application. 
