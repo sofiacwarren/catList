@@ -1,15 +1,31 @@
 # Full Stack Drills
 
-**GOALS**
+## Introduction
 
-- Be comfortable building ANY ExpressJS fullstack application.
-- Quickly work through all major areas of the full stack so you can see it all come together: 
-Frontend (React), Server (Express, and Database (MySQL).
-- The steps below are guidelines
-- After doing this a few times, challenge yourself to create your own application without any directions.
-- If you feel comfortable with everything, think about adding additional features / CSS
+Quickly work through all major areas of the full stack so you can see it all come together: 
+ - Client-side a.k.a. Frontend (React)
+ - Server-side a.k.a Backend (Express, and Database (MySQL).
+
+The steps below are guidelines. After doing this a few times, challenge yourself to create your own application without any directions. If you feel fluent enough, think about adding additional features / CSS
+
+
+## Goal
+
+After completing these practice drills, you should be able to quickly build and work in any ExpressJS application. 
+
+Building a basic CRUD app should be mostly muscle memory.
 
 ## Getting started
+
+**How to perform this activity:**
+
+Once you have done the setup, you will be working through parts 1-3. You should give yourself a day to work through it all. Once you have finished, you should delete everything and start over.
+
+On the second rebuild: Do not reference code you already wrote for this assignment! Instead, rely on DOCUMENTATION and your CHEATSHEET. If you have completed part 3 in a timely manner, proceed to part 4.
+
+--If you are stuck for more than 15 minutes, open a HELPDESK ticket--
+
+**Setup:**
 
 - Navigate to the root directory
 - Run `npm run install-all`
@@ -17,6 +33,10 @@ Frontend (React), Server (Express, and Database (MySQL).
 - Before starting your server make sure to change your database configuration inside of queries.s
 - To seed your database run `npm run seed`
 - To start your server run `npm run start:server`
+
+**Note:**
+
+If you run in to WEBPACK or BABEL issues please get help. This activity is not designed for you to worry about that right now.
 
 ## Part 1: Server API
 
@@ -34,10 +54,10 @@ Technologies:
 
 _ROUTES (PART 1)_
 
-| METHOD | PATH           | DESCRIPTION                             |
-| ------ | -------------- | --------------------------------------- |
-| GET    | /employees     | respond with string "all the employees" |
-| GET    | /employees/:id | respond string "single employee"        |
+| METHOD | PATH           | DESCRIPTION                                  |
+| ------ | -------------- | -------------------------------------------- |
+| GET    | /employees     | respond with string "all the employees"      |
+| GET    | /employees/:id | respond with string "single employee"        |
 
 ## Part 2: MySQL Queries
 
@@ -52,10 +72,10 @@ Technologies:
 
 _ROUTES:_
 
-| METHOD | PATH           | DESCRIPTION                    |
-| ------ | -------------- | ------------------------------ |
-| GET    | /employees     | respond with all the employees |
-| GET    | /employees/:id | respond single employee        |
+| METHOD | PATH           | DESCRIPTION                                                |
+| ------ | -------------- | ---------------------------------------------------------- |
+| GET    | /employees     | respond with all the employees                             |
+| GET    | /employees/:id | respond with single employee, based on req.params.id        |
 
 ## Part 3: ReactJS
 
@@ -69,7 +89,21 @@ In your frontend folder:
 
 You've already created the endpoints below, now you need to use AJAX to communicate to them and get the info you need to the client-side code:
 
-| METHOD | PATH           | DESCRIPTION                    |
-| ------ | -------------- | ------------------------------ |
-| GET    | /employees     | respond with all the employees |
-| GET    | /employees/:id | respond single employee        |
+| METHOD | PATH           | DESCRIPTION                                                |
+| ------ | -------------- | ---------------------------------------------------------- |
+| GET    | /employees     | respond with all the employees                             |
+| GET    | /employees/:id | respond with single employee, based on req.params.id        |
+
+## Part 4: Bonus - Full CRUD  
+
+**(DO THIS ONLY ON THE SECOND RUN)**
+
+Handle these additional routes in your server, they should modify the database accordingly:
+
+| METHOD | PATH           | DESCRIPTION                                 |
+| ------ | -------------- | ------------------------------------------- |
+| POST   | /employees     | inserts new employeee record from req.body  |
+| PATCH  | /employees/:id | update an employee record from req.body     |
+| DELETE | /employees/:id | delete an employee record                   |
+
+Create the appropriate interface in your React app so that users can make AJAX (e.g. Axios, Fetch, $.Ajax, etc) requests to the routes above and then see the changes render in their web browser.
