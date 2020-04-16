@@ -13,7 +13,7 @@ Read this entire document before starting your work. Complete the work in order.
 
 ## Goal
 
-Create a CRUD app using React (without Redux) that interfaces with a RESTful API powered by Node (with Express) and a database (MySQL or MariaDB) from scratch.
+Create a CRUD app using React (without Redux) that interfaces with a RESTful API powered by Node (with Express) and a database (MySQL) from scratch.
 
 Don't use anything that writes code for you (like `create-react-app`). On the other hand, using `npm init` to create the `package.json` and `npm install` to populate the `package.json` is permitted (and encouraged). Don't forget to commit regularly and upload your work to GitHub!
 
@@ -24,11 +24,9 @@ Stick to using only the official documentation and StackOverflow. Limit your use
 1. For server: Node.js with [Express](https://www.npmjs.com/package/express) and [nodemon](https://www.npmjs.com/package/nodemon)
 1. For frontend: [React](https://www.npmjs.com/package/react) with JSX
 1. For AJAX requests: [jQuery](https://www.npmjs.com/package/jquery), [axios](https://www.npmjs.com/package/axios),or fetch
-1. For bundling: [webpack](https://www.npmjs.com/package/webpack)
-1. For transpiling: [Babel](https://babeljs.io/)
-1. For database: MySQL or MariaDB (with [mysql](https://www.npmjs.com/package/mysql))
+1. For database: MySQL (with [mysql](https://www.npmjs.com/package/mysql))
 
-Do not use jQuery for any DOM manipulations. Do not use the [cors](https://www.npmjs.com/search?q=cors) npm module nor add any CORS headers to your server's response.
+Do not use jQuery for any DOM manipulations. 
 
 ## Bare Minimum Requirements
 
@@ -87,6 +85,3 @@ Confirm this functionality is working properly with Postman (recommended) or via
 
 Next, add the frontend functionality that allows users to edit existing records and delete existing records (via your RESTful API).
 
-## Hints
-
-- Setting up webpack, Babel, and React: https://gist.github.com/therobinkim/7eeb85853709474f545ef137ea20e479

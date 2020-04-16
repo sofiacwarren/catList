@@ -8,16 +8,11 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-const retrieveAllEmployees = cb => {
-  connection.query("SELECT * FROM employees", function(error, results, fields) {
-    if (error) {
-      cb(error, null);
-    } else {
-      cb(null, results);
-    }
-  });
-};
+// Your database query here
 
+
+
+// Don't forget to export your functions
 module.exports = {
-  retrieveAllEmployees
+  
 };

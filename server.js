@@ -6,7 +6,7 @@ const queries = require("./queries");
 
 app.use(express.static(path.join(__dirname, "./frontend/build")));
 
-app.get("/employees", (req, res) => {
+app.get("/", (req, res) => {
   // run your query here
   res.send("hello from the server!");
 });
