@@ -1,106 +1,92 @@
-# Full Stack Drills
+# CowList
 
-## Introduction
+Forked from:
+[https://trk.re/cowlist](https://trk.re/cowlist)
 
-Quickly work through all major areas of the full stack so you can see it all come together: 
- - Client-side a.k.a. Frontend (React)
- - Server-side a.k.a Backend (Express, and Database (MySQL).
+## Copyright
+
+These instructions are copyrighted material and may not be distributed without permission. If you did not get a link to this document _directly from your Hack Reactor/Galvanize instructor_, please ask whoever sent it to you to stop sharing this link.
+
+## Instructions
+
+Read this entire document before starting your work. Complete the work in order. There is a hints section at the end.
 
 ## Goal
 
-After completing these practice drills, you should be able to quickly build and work in any ExpressJS application. 
+Create a CRUD app using React (without Redux) that interfaces with a RESTful API powered by Node (with Express) and a database (MySQL or MariaDB) from scratch.
 
-Building a basic CRUD app should be mostly muscle memory.
+Don't use anything that writes code for you (like `create-react-app`). On the other hand, using `npm init` to create the `package.json` and `npm install` to populate the `package.json` is permitted (and encouraged). Don't forget to commit regularly and upload your work to GitHub!
 
-## Getting started
+Stick to using only the official documentation and StackOverflow. Limit your use of video and blog post tutorials. Whenever you find a solution on StackOverflow, always find where in the official documentation you can find the same answer.
 
-**How to perform this activity:**
+### Permitted technlogies
 
-Once you have done the setup, you will be working through parts 1-3. You should give yourself a day to work through it all. Once you have finished, you should delete everything and start over.
+1. For server: Node.js with [Express](https://www.npmjs.com/package/express) and [nodemon](https://www.npmjs.com/package/nodemon)
+1. For frontend: [React](https://www.npmjs.com/package/react) with JSX
+1. For AJAX requests: [jQuery](https://www.npmjs.com/package/jquery), [axios](https://www.npmjs.com/package/axios),or fetch
+1. For bundling: [webpack](https://www.npmjs.com/package/webpack)
+1. For transpiling: [Babel](https://babeljs.io/)
+1. For database: MySQL or MariaDB (with [mysql](https://www.npmjs.com/package/mysql))
 
-On the second rebuild: Do not reference code you already wrote for this assignment! Instead, rely on DOCUMENTATION and your CHEATSHEET. If you have completed part 3 in a timely manner, proceed to part 4.
+Do not use jQuery for any DOM manipulations. Do not use the [cors](https://www.npmjs.com/search?q=cors) npm module nor add any CORS headers to your server's response.
 
---If you are stuck for more than 15 minutes, open a HELPDESK ticket--
+## Bare Minimum Requirements
 
-**Setup:**
+### Backend Requirements
 
-- Navigate to the root directory
-- Run `npm run install-all`
-- To start your react app run `npm run start:react`
-- Before starting your server make sure to change your database configuration inside of queries.js
-- To seed your database run `npm run seed`
-- To start your server run `npm run start:server`
+Create a RESTful API for a resource named `cows` that responds to the following endpoints:
 
-**Note:**
+| intention           | request type | request url | request body                              | side effect                    | response body                                                                    |
+| ------------------- | :----------: | ----------- | ----------------------------------------- | ------------------------------ | -------------------------------------------------------------------------------- |
+| read all cow data   |     GET      | `/api/cows` | none                                      | none                           | `[{name: 'Buttercup', description: '...'}, {name: 'Daisy', description: '...'}]` |
+| create new cow data |     POST     | `/api/cows` | `{name: 'Milkshake', description: '...'}` | creates new record in database | `{name: 'Milkshake', description: '...'}`                                        |
 
-If you run in to WEBPACK or BABEL issues please get help. This activity is not designed for you to worry about that right now.
+Your web server should 100% be interfacing with a database for this phase. Confirm this functionality is working properly with Postman (recommended) or via the `curl` command in your terminal.
 
-## Part 1: Server API
+### Frontend Requirements
 
-Objectives _(read this carefully)_:
+Build the `Create` and `Read` functionality of a CRUD app using React. The frontend should make use of the already created RESTful API endpoints to accomplish the following user stories:
 
-- Create a server that responds to the specified restful routes
-- Each route responds back with **dummy data for now**
+1. When the user loads the page, the user should see a list of all names of previously created cows (but not their descriptions).
 
-Technologies:
+1. When the user types the name and description of a new cow they want to input into the database and presses the `[Submit]` button, the newly created cow's information should be displayed in the list from the previous step **only after the data has been successfully written to the database**.
 
-- Node
-- Express
-- NPM
-- Git
+1. When the user clicks on the name of a cow, the name and description of that cow should be displayed prominently at the top of the page (so as to mimic the functionality of a modal/popup that shows the details of a particular cow).
 
-_ROUTES (PART 1)_
+   a. Only the details of the most recently clicked cow should be prominently displayed at the top of the page at a time. For example, if `Betsy` is the first cow clicked, `Betsy`'s information should be displayed. If `Milkshake` is clicked afterwards, only `Milkshake`'s information should be displayed. `Betsy`'s description should no longer be visible.
 
-| METHOD | PATH           | DESCRIPTION                                  |
-| ------ | -------------- | -------------------------------------------- |
-| GET    | /employees     | respond with string "all the employees"      |
-| GET    | /employees/:id | respond with string "single employee"        |
+   b. The details of any clicked cow should be prominently displayed in the same location in the DOM at the top of the page (aka not within the clicked component).
 
-## Part 2: MySQL Queries
+### Example Data:
 
-- Connect your server to your database using MySQLJS (mysql javascript)
-- Complete the Routes in the route table (use the queries.js helper functions)
+| id  | name      | description                                                                                                                                                     |
+| --- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Buttercup | a herbaceous plant with bright yellow cup-shaped flowers, common in grassland and as a garden weed. All kinds are poisonous and generally avoided by livestock. |
+| 2   | Daisy     | a small grassland plant that has flowers with a yellow disk and white rays. It has given rise to many ornamental garden varieties.                              |
+| 3   | Milkshake | a cold drink made of milk, a sweet flavoring such as fruit or chocolate, and typically ice cream, whisked until it is frothy.                                   |
+| 4   | Bessie    | a person's best or closest friend.                                                                                                                              |
+| 5   | MooDonna  | archaic : lady -- used as a form of respectful address.                                                                                                         |
+| 6   | MooLawn   | a legendary Chinese warrior from the Northern and Southern dynasties period (420–589) of Chinese history.                                                       |
 
-Technologies:
+Note: This data is not intended to be inserted into the database by a script. Rather, it is intended to be manually inserted one-by-one into the database via the React app.
 
-- MySQL
-- MySQLJS
-- Postman
+```
+This is the end of the Bare Minimum Requirements section.
+```
 
-_ROUTES:_
+## More Practice
 
-| METHOD | PATH           | DESCRIPTION                                                |
-| ------ | -------------- | ---------------------------------------------------------- |
-| GET    | /employees     | respond with all the employees                             |
-| GET    | /employees/:id | respond with single employee, based on req.params.id        |
+Add the backend functionality that allows users to update existing records and delete existing records. The response from the RESTful API should be that of the updated (or deleted) record.
 
-## Part 3: ReactJS
+| intention             | request type | request url     | request body          | side effect                                                  | response body                             |
+| --------------------- | :----------: | --------------- | --------------------- | ------------------------------------------------------------ | ----------------------------------------- |
+| update one cow's data |     PUT      | `/api/cows/:id` | `{name: 'BuTtErCuP'}` | updates record for specified id with new name of `BuTtErCuP` | `{name: 'BuTtErCuP', description: '...'}` |
+| delete one cow's data |    DELETE    | `/api/cows/:id` | none                  | deletes record for specified id                              | `{name: 'BuTtErCuP', description: '...'}` |
 
-In your frontend folder:
+Confirm this functionality is working properly with Postman (recommended) or via the `curl` command in your terminal.
 
-- It should allow a users to do the following from their web browser:
-  - View all employees from the server
-  - View a specific employee from the server
-- You will need to use AJAX (Fetch, Axios, etc) to allow your client side code to talk to your server.
-- You can create as many React components as you want
+Next, add the frontend functionality that allows users to edit existing records and delete existing records (via your RESTful API).
 
-You've already created the endpoints below, now you need to use AJAX to communicate to them and get the info you need to the client-side code:
+## Hints
 
-| METHOD | PATH           | DESCRIPTION                                                |
-| ------ | -------------- | ---------------------------------------------------------- |
-| GET    | /employees     | respond with all the employees                             |
-| GET    | /employees/:id | respond with single employee, based on req.params.id        |
-
-## Part 4: Bonus - Full CRUD  
-
-**(DO THIS ONLY ON THE SECOND RUN)**
-
-Handle these additional routes in your server, they should modify the database accordingly:
-
-| METHOD | PATH           | DESCRIPTION                                 |
-| ------ | -------------- | ------------------------------------------- |
-| POST   | /employees     | inserts new employeee record from req.body  |
-| PATCH  | /employees/:id | update an employee record from req.body     |
-| DELETE | /employees/:id | delete an employee record                   |
-
-Create the appropriate interface in your React app so that users can make AJAX (e.g. Axios, Fetch, $.Ajax, etc) requests to the routes above and then see the changes render in their web browser.
+- Setting up webpack, Babel, and React: https://gist.github.com/therobinkim/7eeb85853709474f545ef137ea20e479
