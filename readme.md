@@ -27,7 +27,7 @@ On the second rebuild: Do not reference code you already wrote for this assignme
 - Navigate to the root directory
 - Run `npm run install-all`
 - To start your react app run `npm run start:react`
-- Before starting your server make sure to change your database configuration inside of queries.s
+- Before starting your server make sure to change your database configuration inside of queries.js
 - To seed your database run `npm run seed`
 - To start your server run `npm run start:server`
 
