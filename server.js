@@ -6,9 +6,13 @@ const queries = require("./queries");
 
 app.use(express.static(path.join(__dirname, "./frontend/build")));
 
-app.get("/", (req, res) => {
+app.get("/api/cows", (req, res) => {
   // run your query here
   res.send("hello from the server!");
+});
+
+app.post("/api/cows", (req, res) => {
+  res.send("new cow sent to server")
 });
 
 app.listen(PORT, () => {
