@@ -8,12 +8,18 @@ app.use(express.static(path.join(__dirname, "./frontend/build")));
 
 app.get("/api/cows", (req, res) => {
   // run your query here
-  res.send("hello from the server!");
+  queries.retrieveAllCows((err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(data);
+    }
+  })
 });
 
-app.post("/api/cows", (req, res) => {
-  res.send("new cow sent to server")
-});
+// app.post("/api/cows", (req, res) => {
+//   res.send("new cow sent to server")
+// });
 
 app.listen(PORT, () => {
   console.log(`server is running and listening on port ${PORT}`);
