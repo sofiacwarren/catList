@@ -7,7 +7,6 @@ const queries = require("./queries");
 app.use(express.static(path.join(__dirname, "./frontend/build")));
 
 app.get("/api/cows", (req, res) => {
-  // run your query here
   queries.retrieveAllCows((err, data) => {
     if (err) {
       res.status(404).send(err);
