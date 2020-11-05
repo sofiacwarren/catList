@@ -3,7 +3,7 @@ import Cow from "./Cow.js"
 
 const cowsList = ({cowData}) => {
 
-  return <div className='cowsList'>
+  return <div className='cowsList' id='cowList'>
     {cowData.map((cow) => {
       return <Cow
         key={cow.id}

@@ -18,8 +18,7 @@ connection.connect((err) => {
 const retrieveAllCows = (cb) => {
   connection.query("SELECT * FROM cows", function(
     error,
-    results,
-    fields
+    results
   ) {
     if (error) {
       cb(error, null);
@@ -34,8 +33,7 @@ const createNewCow = (input, cb) => {
   const queryStr = `INSERT INTO cows (cow_name, cow_description) VALUES (?, ?)`
   connection.query(queryStr, [input.cowName, input.description], function(
     error,
-    results,
-    fields
+    results
     ) {
       if (error) {
         cb(error, null);

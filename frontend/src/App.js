@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Cow from './Components/Cow.js';
 import CowsList from './Components/CowsList.js'
+import axios from 'axios'
 
 class App extends React.Component {
   constructor(props) {
@@ -18,11 +19,26 @@ class App extends React.Component {
 
   //handle Submit
   handleSubmit(e) {
-    fetch("/api/cows")
+    e.preventDefault();
+    var options = {method: 'POST',
+      headers: {'Content-Type': 'application/json'}
+  }
+    var newCowData = {
+      id: this.state.inputCowName,
+      cow_name: this.state.inputDescription
+      };
+      options.body = JSON.stringify(newCowData);
+      console.log('option.body: ', options.body)
+    fetch("http://localhost:3001/api/cows", options)
       .then((res) => (res.json()))
       .then((data) => (
-        this.setState({cowData: data})
+        this.setState({cowData: [...this.state.cowData, newCowData]})
       ))
+      // axios.post("/api/cows")
+      //   .then((data) => {
+      //     this.setState({cowData: [...this.state.cowData, newCowData]})
+      //   })
+      //   .catch((err) => (console.log('err: ', err)))
   }
   //handle Change
   handleChange(e) {
