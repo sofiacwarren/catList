@@ -9,15 +9,20 @@ class App extends React.Component {
     super(props)
     this.state = {
       cowData: [],
-      inputId: '',
-      selectedCow: {}
+      inputCow: '',
+      newCow: {}
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   //handle Submit
   handleSubmit(e) {
-
+    // fetch("/api/cows")
+    //   .then((res) => (res.json()))
+    //   .then(data) => (
+    //     this.setState({cowData: data})
+    //   )
   }
   //handle Change
   handleChange(e) {
@@ -46,13 +51,14 @@ class App extends React.Component {
         <CowsList cowData={this.state.cowData}/>
         <form onSubmit={this.handleSubmit}>
           <input
-            name="inputId"
-            placeholder="enter cow id"
+            name="inputCow"
+            placeholder="enter cow name, description"
             value={this.state.inputId}
             onChange={this.handleChange}
             ></input>
             <button type="submit">sub-mooooooo-t</button>
         </form>
+        <Cow newCow={this.state.newCow}/>
       </div>
     );
   }

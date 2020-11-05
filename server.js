@@ -16,9 +16,16 @@ app.get("/api/cows", (req, res) => {
   })
 });
 
-// app.post("/api/cows", (req, res) => {
-//   res.send("new cow sent to server")
-// });
+app.post("/api/cows", (req, res) => {
+  var input = req.body.inputCow.split(',');
+  queries.createNewCow((err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.send(data);
+    }
+  })
+});
 
 app.listen(PORT, () => {
   console.log(`server is running and listening on port ${PORT}`);

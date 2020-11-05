@@ -30,8 +30,23 @@ const retrieveAllCows = (cb) => {
 }
 
 //post -> new cow to db
+const createNewCow = (input, cb) => {
+  const queryStr = `INSERT INTO cows (cow_name, cow_description) VALUES (${input[0]}, ${input[1]})`
+  connection.query(queryStr, function(
+    error,
+    results,
+    fields
+    ) {
+      if (error) {
+        cb(error, null);
+      } else {
+        cb(null, results)
+      }
+  });
+}
 
 // Don't forget to export your functions
 module.exports = {
-  retrieveAllCows
+  retrieveAllCows,
+  createNewCow
 };
