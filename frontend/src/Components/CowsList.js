@@ -9,7 +9,6 @@ const cowsList = ({cowData}) => {
         key={cow.id}
         cow_id={cow.id}
         cow_name={cow.cow_name}
-        description={cow.cow_description}
       />
     })}
   </div>

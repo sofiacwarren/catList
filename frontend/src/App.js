@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Cow from './Components/Cow.js';
 import CowsList from './Components/CowsList.js'
@@ -9,8 +8,9 @@ class App extends React.Component {
     super(props)
     this.state = {
       cowData: [],
-      inputCow: '',
-      newCow: {}
+      inputCowName: '',
+      inputDescription: '',
+      selectedCow: {}
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,16 +18,17 @@ class App extends React.Component {
 
   //handle Submit
   handleSubmit(e) {
-    // fetch("/api/cows")
-    //   .then((res) => (res.json()))
-    //   .then(data) => (
-    //     this.setState({cowData: data})
-    //   )
+    fetch("/api/cows")
+      .then((res) => (res.json()))
+      .then((data) => (
+        this.setState({cowData: data})
+      ))
   }
   //handle Change
   handleChange(e) {
-    this.setState({inputId: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
+  //handle Cow click -> getOne
 
   //lifecycle method
   componentDidMount() {
@@ -51,14 +52,20 @@ class App extends React.Component {
         <CowsList cowData={this.state.cowData}/>
         <form onSubmit={this.handleSubmit}>
           <input
-            name="inputCow"
-            placeholder="enter cow name, description"
-            value={this.state.inputId}
+            name="inputCowName"
+            placeholder="enter cow name"
+            value={this.state.inputCowName}
+            onChange={this.handleChange}
+            ></input>
+          <input
+            name="inputDescription"
+            placeholder="enter cow description"
+            value={this.state.inputDescription}
             onChange={this.handleChange}
             ></input>
             <button type="submit">sub-mooooooo-t</button>
         </form>
-        <Cow newCow={this.state.newCow}/>
+        <Cow selectedCow={this.state.selectedCow}/>
       </div>
     );
   }
@@ -66,3 +73,4 @@ class App extends React.Component {
 
 
 export default App;
+
