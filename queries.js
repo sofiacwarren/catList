@@ -30,7 +30,7 @@ const retrieveAllCows = (cb) => {
 
 //post -> new cow to db
 const createNewCow = (input, cb) => {
-  const queryStr = `INSERT INTO cows (cow_name, cow_description) VALUES (?, ?)`
+  const queryStr = `INSERT INTO cows (cow_name, cow_description) VALUES ( ?, ?)`
   connection.query(queryStr, [input.cowName, input.description], function(
     error,
     results

@@ -10,9 +10,10 @@ USE cowsData;
 
 -- CREATE YOUR TABLES
 CREATE TABLE IF NOT EXISTS cows (
-  id integer AUTO_INCREMENT UNIQUE PRIMARY KEY,
-  cow_name VARCHAR(20),
-  cow_description VARCHAR(300)
+  id integer AUTO_INCREMENT UNIQUE,
+  cow_name VARCHAR(20) NOT NULL,
+  cow_description VARCHAR(300),
+  PRIMARY KEY (id)
 );
 -- ADD RECORDS TO YOUR TABLE
 

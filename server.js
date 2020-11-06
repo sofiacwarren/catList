@@ -26,8 +26,8 @@ app.get("/api/cows", (req, res) => {
 app.post("/api/cows", (req, res) => {
   console.log('req.body: ', req.body)
   var input = {
-    cowName: req.body.inputCowName,
-    description: req.body.inputDescription
+    cowName: req.body.cow_name,
+    description: req.body.cow_description
   };
   queries.createNewCow(input, (err, data) => {
     if (err) {

@@ -15,39 +15,33 @@ class App extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getALLcows = this.getALLcows.bind(this);
   }
 
   //handle Submit
   handleSubmit(e) {
     e.preventDefault();
-    var options = {method: 'POST',
+    var request = {method: 'POST',
       headers: {'Content-Type': 'application/json'}
   }
     var newCowData = {
-      id: this.state.inputCowName,
-      cow_name: this.state.inputDescription
+      cow_name: this.state.inputCowName,
+      cow_description: this.state.inputDescription
       };
-      options.body = JSON.stringify(newCowData);
-      console.log('option.body: ', options.body)
-    fetch("http://localhost:3001/api/cows", options)
-      .then((res) => (res.json()))
-      .then((data) => (
-        this.setState({cowData: [...this.state.cowData, newCowData]})
-      ))
-      // axios.post("/api/cows")
-      //   .then((data) => {
-      //     this.setState({cowData: [...this.state.cowData, newCowData]})
-      //   })
-      //   .catch((err) => (console.log('err: ', err)))
+      request.body = JSON.stringify(newCowData);
+      console.log('option.body: ', request.body)
+      fetch("http://localhost:3000/api/cows", request)
+        .then((res) => (res.json()))
+        .then(this.getALLcows())
   }
   //handle Change
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
-  //handle Cow click -> getOne
+  //handle Cow click -> select one cow
 
-  //lifecycle method
-  componentDidMount() {
+  //getALLcows
+  getALLcows() {
     fetch("/api/cows")
       .then((res) => (res.json()))
       .then((data) => (
@@ -56,6 +50,11 @@ class App extends React.Component {
       .catch((err) => (
         console.error('error: ', err)
       ))
+  }
+
+  //lifecycle method
+  componentDidMount() {
+    this.getALLcows();
   }
 
   render() {
