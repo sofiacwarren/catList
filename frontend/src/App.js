@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Cow from './Components/Cow.js';
 import CowsList from './Components/CowsList.js'
-import axios from 'axios'
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getALLcows = this.getALLcows.bind(this);
+    this.handleClickCow = this.handleClickCow.bind(this);
   }
 
   //handle Submit
@@ -29,16 +29,22 @@ class App extends React.Component {
       cow_description: this.state.inputDescription
       };
       request.body = JSON.stringify(newCowData);
-      console.log('option.body: ', request.body)
       fetch("http://localhost:3000/api/cows", request)
         .then((res) => (res.json()))
         .then(this.getALLcows())
+        .catch((err) => (
+          console.error('error: ', err)
+        ))
   }
   //handle Change
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
   //handle Cow click -> select one cow
+  handleClickCow(id) {
+    console.log('click')
+    this.setState({selectedCow: id})
+  }
 
   //getALLcows
   getALLcows() {
@@ -52,7 +58,7 @@ class App extends React.Component {
       ))
   }
 
-  //lifecycle method
+  //lifecycle methods
   componentDidMount() {
     this.getALLcows();
   }
@@ -64,7 +70,10 @@ class App extends React.Component {
         <h1 className="App-header">
           Cow List
         </h1>
-        <CowsList cowData={this.state.cowData}/>
+        <CowsList
+          cowData={this.state.cowData}
+          handleClickCow={this.handleClickCow}
+        />
         <form onSubmit={this.handleSubmit}>
           <input
             name="inputCowName"
@@ -80,7 +89,12 @@ class App extends React.Component {
             ></input>
             <button type="submit">sub-mooooooo-t</button>
         </form>
-        <Cow selectedCow={this.state.selectedCow}/>
+        <Cow
+        // refactor to pass selectedCow from state.
+          cow_id={cow.id}
+          cow_name={cow.cow_name}
+          cow_description={cow.cow_description}
+        />
       </div>
     );
   }
