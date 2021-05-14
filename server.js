@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 //parses out information from url
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.get("/api/cows", (req, res) => {
-  queries.retrieveAllCows((err, data) => {
+app.get("/api/cats", (req, res) => {
+  queries.retrieveAllCats((err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {
@@ -21,13 +21,13 @@ app.get("/api/cows", (req, res) => {
   })
 });
 
-app.post("/api/cows", (req, res) => {
+app.post("/api/cats", (req, res) => {
   console.log('req.body: ', req.body)
   var input = {
-    cowName: req.body.cow_name,
-    description: req.body.cow_description
+    catName: req.body.cat_name,
+    description: req.body.cat_description
   };
-  queries.createNewCow(input, (err, data) => {
+  queries.createNewCat(input, (err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {

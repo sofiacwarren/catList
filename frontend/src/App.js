@@ -1,21 +1,20 @@
 import React from 'react';
 import './App.css';
-import Cow from './Components/Cow.js';
-import CowsList from './Components/CowsList.js'
+import Cat from './Components/Cat.js';
+import CatList from './Components/CatList.js'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cowData: [],
-      inputCowName: '',
+      catData: [],
+      inputCatName: '',
       inputDescription: '',
-      selectedCow: {}
+      selectedCat: {}
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getALLcows = this.getALLcows.bind(this);
-    this.handleClickCow = this.handleClickCow.bind(this);
+    this.getALLcats = this.getALLcats.bind(this);
   }
 
   //handle Submit
@@ -24,14 +23,14 @@ class App extends React.Component {
     var request = {method: 'POST',
       headers: {'Content-Type': 'application/json'}
   }
-    var newCowData = {
-      cow_name: this.state.inputCowName,
-      cow_description: this.state.inputDescription
+    var newCatData = {
+      cat_name: this.state.inputCatName,
+      cat_description: this.state.inputDescription
       };
-      request.body = JSON.stringify(newCowData);
-      fetch("http://localhost:3000/api/cows", request)
+      request.body = JSON.stringify(newCatData);
+      fetch("http://localhost:3000/api/cats", request)
         .then((res) => (res.json()))
-        .then(this.getALLcows())
+        .then(this.getALLcats())
         .catch((err) => (
           console.error('error: ', err)
         ))
@@ -40,18 +39,18 @@ class App extends React.Component {
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
-  //handle Cow click -> select one cow
-  handleClickCow(id) {
+  //handle Cat click -> select one cat
+  handleClickCat(id) {
     console.log('click')
-    this.setState({selectedCow: id})
+    this.setState({selectedCat: this.state.catData[id]})
   }
 
-  //getALLcows
-  getALLcows() {
-    fetch("/api/cows")
+  //getALLcats
+  getALLcats() {
+    fetch("/api/cats")
       .then((res) => (res.json()))
       .then((data) => (
-        this.setState({cowData: data})
+        this.setState({catData: data})
       ))
       .catch((err) => (
         console.error('error: ', err)
@@ -60,7 +59,7 @@ class App extends React.Component {
 
   //lifecycle methods
   componentDidMount() {
-    this.getALLcows();
+    this.getALLcats();
   }
 
   render() {
@@ -68,33 +67,28 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1 className="App-header">
-          Cow List
+          Cat List
         </h1>
-        <CowsList
-          cowData={this.state.cowData}
-          handleClickCow={this.handleClickCow}
+        <CatList
+          catData={this.state.catData}
+          handleClickCat={this.handleClickCat}
         />
         <form onSubmit={this.handleSubmit}>
           <input
-            name="inputCowName"
-            placeholder="enter cow name"
-            value={this.state.inputCowName}
+            name="inputCatName"
+            placeholder="enter cat name"
+            value={this.state.inputCatName}
             onChange={this.handleChange}
             ></input>
           <input
             name="inputDescription"
-            placeholder="enter cow description"
+            placeholder="enter cat description"
             value={this.state.inputDescription}
             onChange={this.handleChange}
             ></input>
-            <button type="submit">sub-mooooooo-t</button>
+            <button type="submit">sub-meooooooow-t</button>
         </form>
-        <Cow
-        // refactor to pass selectedCow from state.
-          cow_id={cow.id}
-          cow_name={cow.cow_name}
-          cow_description={cow.cow_description}
-        />
+        <Cat/>
       </div>
     );
   }

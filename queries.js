@@ -2,8 +2,8 @@ const mysql = require("mysql");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "passw0rd",
-  database: "cowsData"
+  password: "password",
+  database: "catData"
 });
 
 connection.connect((err) => {
@@ -15,8 +15,8 @@ connection.connect((err) => {
 });
 
 //getAll
-const retrieveAllCows = (cb) => {
-  connection.query("SELECT * FROM cows", function(
+const retrieveAllCats = (cb) => {
+  connection.query("SELECT * FROM cat", function(
     error,
     results
   ) {
@@ -29,8 +29,8 @@ const retrieveAllCows = (cb) => {
 }
 
 //post -> new cow to db
-const createNewCow = (input, cb) => {
-  const queryStr = `INSERT INTO cows (cow_name, cow_description) VALUES ( ?, ?)`
+const createNewCat = (input, cb) => {
+  const queryStr = `INSERT INTO cat (cat_name, cat_description) VALUES ( ?, ?)`
   connection.query(queryStr, [input.cowName, input.description], function(
     error,
     results
@@ -45,6 +45,6 @@ const createNewCow = (input, cb) => {
 
 // Don't forget to export your functions
 module.exports = {
-  retrieveAllCows,
-  createNewCow
+  retrieveAllCats,
+  createNewCat
 };
