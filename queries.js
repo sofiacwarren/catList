@@ -28,10 +28,10 @@ const retrieveAllCats = (cb) => {
   });
 }
 
-//post -> new cow to db
+//post -> new cat to db
 const createNewCat = (input, cb) => {
   const queryStr = `INSERT INTO cat (cat_name, cat_description) VALUES ( ?, ?)`
-  connection.query(queryStr, [input.cowName, input.description], function(
+  connection.query(queryStr, [input.catName, input.description], function(
     error,
     results
     ) {
